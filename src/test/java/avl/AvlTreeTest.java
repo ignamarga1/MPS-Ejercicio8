@@ -12,6 +12,10 @@ import org.junit.Test;
 
 /**
  * Created with IntelliJ IDEA. User: Antonio J. Nebro Date: 08/07/13
+ * @author Pedro Ankersmit Carrión
+ * @author Ignacio Martínez Gallardo
+ * @author Hilaria Romero Bouyahia
+ * @author Pablo Sánchez González
  */
 public class AvlTreeTest {
 
