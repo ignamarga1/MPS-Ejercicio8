@@ -10,6 +10,10 @@ import org.junit.Test;
 
 /**
  * Created with IntelliJ IDEA. User: Antonio J. Nebro Date: 09/07/13 Time: 15:29
+ * @author Pedro Ankersmit Carrión
+ * @author Ignacio Martínez Gallardo
+ * @author Hilaria Romero Bouyahia
+ * @author Pablo Sánchez González
  */
 public class AvlNodeTest {
 
