@@ -56,7 +56,8 @@ public class AvlNode<T> {
   }
 
   public void setLeft(AvlNode<T> left) {
-    this.left = left;
+    if(left == null){ throw new RuntimeException("Nodo nulo");}
+    else{this.left = left;}
   }
 
   public AvlNode<T> getParent() {
@@ -64,7 +65,9 @@ public class AvlNode<T> {
   }
 
   public void setParent(AvlNode<T> parent) {
+    if(parent == null){throw new RuntimeException("Nodo nulo");}else{
     this.parent = parent;
+  }
   }
 
   public AvlNode<T> getRight() {
@@ -72,7 +75,8 @@ public class AvlNode<T> {
   }
 
   public void setRight(AvlNode<T> right) {
-    this.right = right;
+    if(right == null){ throw new RuntimeException("Nodo nulo");}
+    else{this.right = right;}
   }
 
   public T getItem() {
@@ -108,7 +112,9 @@ public class AvlNode<T> {
   }
 
   public void setClosestNode(AvlNode<T> closestNode) {
+    if(closestNode == null){ throw new RuntimeException("Nodo nulo");}else{
     this.closestNode = closestNode;
+  }
   }
 
   public boolean hasParent() {
