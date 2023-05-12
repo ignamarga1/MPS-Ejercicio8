@@ -130,7 +130,25 @@ public class BlackBoxTests {
         assertThrows(RuntimeException.class,()->tree.setTop(node));
     }
 
+    @Test
+    @DisplayName("Test de usar height con Valor Válido")
+    public void whenUsingHeightReturnsHeight(){
+        tree = new AvlTree<>(c);
+        node = new AvlNode<>(3);
+        tree.insertAvlNode(node);
 
+        assertEquals(0,tree.height(node));
+    }
+    @Test
+    @DisplayName("Test de usar height con Valor Inválido")
+    public void whenUsingHeightWithInvalidNodeAnExceptionIsThrown(){
+        tree = new AvlTree<>(c);
+        node = new AvlNode<>(3);
+        tree.insertAvlNode(node);
+
+        assertThrows(RuntimeException.class, () -> tree.height(null));
+
+    }
 
     // PRUEBAS DE AVLNODE //////////////////
     @Test

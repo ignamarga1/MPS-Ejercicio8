@@ -152,6 +152,11 @@ public class AvlTree<T> {
   }
 
   public void deleteLeafNode(AvlNode<T> node) {
+
+    if(node == null){
+      throw new RuntimeException("El nodo es nulo");
+    }
+
     if (!node.hasParent()) {
       top = null;
     } else {
@@ -406,14 +411,13 @@ public class AvlTree<T> {
   }}
 
   public int height(AvlNode<T> node) {
+    if(node == null){throw new RuntimeException("Nodo nulo");}else{
     int result = 0;
-    if (node == null) {
-      result = -1;
-    } else {
+
       result = node.getHeight();
-    }
 
     return result;
+  }
   }
 
   public String toString() {
