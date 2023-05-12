@@ -40,7 +40,11 @@ public class AvlTree<T> {
    */
   public AvlTree(Comparator comparator) {
     top = null;
-    this.comparator = comparator;
+    if(comparator == null){
+      throw new RuntimeException("El comparador es nulo");
+    } else {
+      this.comparator = comparator;
+    }
   }
 
   public void insert(T item) {
@@ -49,6 +53,7 @@ public class AvlTree<T> {
   }
 
   public void insertAvlNode(AvlNode<T> node) {
+    if(node == null){ throw new RuntimeException("Intentas insertar un nodo nulo");}else{
     if (avlIsEmpty()) {
       insertTop(node);
     } else {
@@ -64,6 +69,7 @@ public class AvlTree<T> {
         default:
           break;
       }
+    }
     }
   }
 
