@@ -7,8 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.Comparator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BlackBoxTests {
     AvlTree<Integer> tree;
@@ -47,6 +46,40 @@ public class BlackBoxTests {
         tree = new AvlTree<>(c);
         node = null;
         assertThrows(RuntimeException.class, () -> tree.insertAvlNode(node));
+    }
+
+    @Test
+    @DisplayName("Test de usar getTop con valores válidos")
+    public void whenUsingGetTopWithValidConditionsItWorks(){
+        tree = new AvlTree<>(c);
+        node = new AvlNode<>(2);
+        tree.insertAvlNode(node);
+
+        assertTrue(node.equals(tree.getTop()));
+
+    }
+
+    @Test
+    @DisplayName("Test de usar getTop con valores inválidos")
+    public void whenUsingGetTopWithInvalidConditionsAnExceptionIsThrown(){
+        tree = null;
+        assertThrows(RuntimeException.class,()->tree.getTop());
+    }
+
+    @Test
+    @DisplayName("Test de usar setTop con valores válidos")
+    public void whenUsingSetTopWithValidConditionsItWorks(){
+        tree = new AvlTree<>(c);
+        node = new AvlNode<>(2);
+        tree.setTop(node);
+
+        assertEquals(node, tree.getTop());
+    }
+    @Test
+    @DisplayName("Test de usar setTop con valores inválidos")
+    public void whenUsingSetTopWithInvalidConditionsAnExceptionIsThrown(){
+        tree = null;
+        assertThrows(RuntimeException.class,()->tree.setTop(node));
     }
 
 
@@ -92,7 +125,7 @@ public class BlackBoxTests {
     }
 
     @Test
-    @DisplayName("Test de se pasa un nodo válido para setParent")
+    @DisplayName("Test para setParent")
     public void whenUsingSetParentWithAValidNodeItWorks(){
         node = new AvlNode<>(1);
         AvlNode<Integer> aux = new AvlNode<>(2);
@@ -102,14 +135,6 @@ public class BlackBoxTests {
         assertEquals(aux, node.getParent());
     }
 
-    @Test
-    @DisplayName("Test de se pasa un nodo inválido para setParent")
-    public void whenUsingSetParentWithAnInvalidNodeAnExceptionIsThrown(){
-        node = new AvlNode<>(1);
-        AvlNode<Integer> aux = null;
-
-        assertThrows(RuntimeException.class, () ->node.setParent(aux));
-    }
     @Test
     @DisplayName("Test de se pasa un nodo válido para setClosestNode")
     public void whenUsingSetClosestNodeWithAValidNodeItWorks(){
@@ -129,4 +154,40 @@ public class BlackBoxTests {
 
         assertThrows(RuntimeException.class, () ->node.setClosestNode(aux));
     }
+
+    @Test
+    @DisplayName("Test de se pasa un nodo válido para setHeight")
+    public void whenUsingSetHeightWithAValidIntItWorks(){
+        node = new AvlNode<>(1);
+
+        node.setHeight(2);
+
+        assertEquals(2, node.getHeight());
+    }
+
+    @Test
+    @DisplayName("Test de se pasa un nodo inválido para setHeight")
+    public void whenUsingSetHeightNodeWithAnInvalidIntAnExceptionIsThrown(){
+        node = new AvlNode<>(1);
+
+        assertThrows(RuntimeException.class, () ->node.setHeight(-1));
+    }
+
+    @Test
+    @DisplayName("Test de se actualiza la altura")
+    public void whenUsingUpdateHeightTheHeightIsCorrect(){
+        node = new AvlNode<>(1);
+        AvlNode<Integer> aux1 = new AvlNode<>(2);
+        AvlNode<Integer> aux2 = new AvlNode<>(3);
+        node.setHeight(0);
+        aux1.setHeight(1);
+        aux2.setHeight(2);
+        node.setLeft(aux1);
+        aux1.setLeft(aux2);
+
+        node.updateHeight();
+
+        assertEquals(2,node.getHeight());
+    }
+
 }

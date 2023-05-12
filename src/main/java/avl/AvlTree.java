@@ -394,9 +394,10 @@ public class AvlTree<T> {
   }
 
   public void setTop(AvlNode<T> top) {
+    if (top == null){ throw new RuntimeException();}else{
     this.top = top;
     this.top.setParent(null);
-  }
+  }}
 
   public int height(AvlNode<T> node) {
     int result = 0;
