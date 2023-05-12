@@ -152,6 +152,11 @@ public class AvlTree<T> {
   }
 
   public void deleteLeafNode(AvlNode<T> node) {
+
+    if(node == null){
+      throw new RuntimeException("El nodo es nulo");
+    }
+
     if (!node.hasParent()) {
       top = null;
     } else {
