@@ -4,12 +4,14 @@ Created by Pedro Ankersmit Carrión
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 
 import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
+@Tag("1")
 public class BlackBoxTests {
     AvlTree<Integer> tree;
     AvlNode<Integer> node;
