@@ -43,12 +43,14 @@ public class BlackBoxTests {
     }
 
     @Test
+    @DisplayName("cuando se borra un nodo nulo se lanza una excepción")
     public void Should_ThrowException_When_DeletingANullNode(){
         tree = new AvlTree<>(c);
         assertThrows(RuntimeException.class, () -> tree.deleteNode(null));
     }
 
     @Test
+    @DisplayName("cuando se borra un nodo, este no estará incluido en el arbol")
     public void Should_NotIncludeANode_When_DeletingIt(){
         tree = new AvlTree<>(c);
         node = new AvlNode<>(1);
@@ -58,6 +60,7 @@ public class BlackBoxTests {
     }
 
     @Test
+    @DisplayName("cuando se borra un nodo hoja y este es el top, el top se vuelve nulo")
     public void Should_TopBecomeNull_When_DeletingTopLeafNode(){
         tree = new AvlTree<>(c);
         node = new AvlNode<>(1);
@@ -67,6 +70,7 @@ public class BlackBoxTests {
     }
 
     @Test
+    @DisplayName("cuando se borra un nodo hoja a la izquierda, este no estará incluido en el árbol")
     public void Should_NotIncludeANode_When_DeletingLeafNodeOnTheLeft(){
         tree = new AvlTree<>(c);
         node = new AvlNode<>(1);
@@ -78,6 +82,7 @@ public class BlackBoxTests {
     }
 
     @Test
+    @DisplayName("cuando se borra un nodo hoja a la izquierda, este no estará incluido en el árbol")
     public void Should_NotIncludeANode_When_DeletingLeafNodeOnTheRight() {
         tree = new AvlTree<>(c);
         node = new AvlNode<>(1);
@@ -86,6 +91,64 @@ public class BlackBoxTests {
         tree.insertAvlNode(node);
         tree.deleteNode(left);
         assertNull(tree.searchNode(left));
+    }
+
+    @Test
+    @DisplayName("cuando se borra un nodo hoja que es nulo, se lanza una excepción")
+    public void Should_ThrowException_When_DeletingANullLeaf(){
+        tree = new AvlTree<>(c);
+        assertThrows(RuntimeException.class, () -> tree.deleteLeafNode(null));
+    }
+
+    @Test
+    @DisplayName("cuando rotamos un árbol a la izquierda sobre un nodo nulo, se lanza una excepción")
+    public void Should_ThrowException_When_RotatingANullTreeToTheLeft(){
+        tree = new AvlTree<>(c);
+        assertThrows(NullPointerException.class, () -> tree.leftRotation(null));
+    }
+
+    @Test
+    @DisplayName("cuando rotamos un árbol a la derecha sobre un nodo nulo, se lanza una excepción")
+    public void Should_ThrowException_When_RotatingANullTreeToTheRight(){
+        tree = new AvlTree<>(c);
+        assertThrows(NullPointerException.class, () -> tree.rightRotation(null));
+    }
+
+    @Test
+    @DisplayName("cuando rotamos un árbol doblemente a la izquierda sobre un nodo nulo, se lanza una excepción")
+    public void Should_ThrowException_When_DoubleRotatingANullTreeToTheLeft(){
+        tree = new AvlTree<>(c);
+        assertThrows(NullPointerException.class, () -> tree.doubleLeftRotation(null));
+    }
+
+    @Test
+    @DisplayName("cuando rotamos un árbol doblemente a la derecha sobre un nodo nulo, se lanza una excepción")
+    public void Should_ThrowException_When_DoubleRotatingANullTreeToTheRight(){
+        tree = new AvlTree<>(c);
+        assertThrows(NullPointerException.class, () -> tree.doubleRightRotation(null));
+    }
+
+    @Test
+    @DisplayName("cuando balanceamos un árbol sobre un nodo nulo, se lanza una excepción")
+    public void Should_ThrowException_When_GettingBalanceOfNullNode(){
+        tree = new AvlTree<>(c);
+        assertThrows(NullPointerException.class, () -> tree.getBalance(null));
+    }
+
+    @Test
+    @DisplayName("Test de usar insertTop con valores válidos")
+    public void Should_NodeBeTop_When_InsertingItOnTheTopWithValidConditions(){
+        tree = new AvlTree<>(c);
+        node = new AvlNode<>(2);
+        tree.setTop(node);
+
+        assertEquals(node, tree.getTop());
+    }
+    @Test
+    @DisplayName("Test de usar insertTop con valores inválidos")
+    public void Should_ThrowException_When_InsertingItOnTheTopWithInvalidConditions(){
+        tree = null;
+        assertThrows(RuntimeException.class,()->tree.setTop(node));
     }
 
     @Test
