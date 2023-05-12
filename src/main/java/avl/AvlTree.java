@@ -40,7 +40,11 @@ public class AvlTree<T> {
    */
   public AvlTree(Comparator comparator) {
     top = null;
-    this.comparator = comparator;
+    if(comparator == null){
+      throw new RuntimeException("El comparador es nulo");
+    } else {
+      this.comparator = comparator;
+    }
   }
 
   public void insert(T item) {
@@ -49,6 +53,7 @@ public class AvlTree<T> {
   }
 
   public void insertAvlNode(AvlNode<T> node) {
+    if(node == null){ throw new RuntimeException("Intentas insertar un nodo nulo");}else{
     if (avlIsEmpty()) {
       insertTop(node);
     } else {
@@ -65,6 +70,7 @@ public class AvlTree<T> {
           break;
       }
     }
+    }
   }
 
   public AvlNode<T> search(T item) {
@@ -73,6 +79,11 @@ public class AvlTree<T> {
   }
 
   public AvlNode<T> searchNode(AvlNode<T> targetNode) {
+
+    if(targetNode == null){
+      throw new RuntimeException("El nodo es nulo");
+    }
+
     AvlNode<T> currentNode;
     AvlNode<T> result = null;
 
@@ -113,6 +124,7 @@ public class AvlTree<T> {
   }
 
   public void deleteNode(AvlNode<T> node) {
+
     AvlNode<T> nodeFound;
 
     nodeFound = searchNode(node);
