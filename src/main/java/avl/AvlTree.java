@@ -73,6 +73,11 @@ public class AvlTree<T> {
   }
 
   public AvlNode<T> searchNode(AvlNode<T> targetNode) {
+
+    if(targetNode == null){
+      throw new RuntimeException("El nodo es nulo");
+    }
+
     AvlNode<T> currentNode;
     AvlNode<T> result = null;
 
@@ -113,6 +118,7 @@ public class AvlTree<T> {
   }
 
   public void deleteNode(AvlNode<T> node) {
+
     AvlNode<T> nodeFound;
 
     nodeFound = searchNode(node);
