@@ -65,9 +65,7 @@ public class AvlNode<T> {
   }
 
   public void setParent(AvlNode<T> parent) {
-    if(parent == null){throw new RuntimeException("Nodo nulo");}else{
     this.parent = parent;
-  }
   }
 
   public AvlNode<T> getRight() {
@@ -92,7 +90,8 @@ public class AvlNode<T> {
   }
 
   public void setHeight(int height) {
-    this.height = height;
+    if(height < 0){throw new RuntimeException("Altura no válida");}else{
+    this.height = height;}
   }
 
   public void updateHeight() {
